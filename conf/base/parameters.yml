@@ -1,1 +1,3 @@
 model_checkpoint: sentence-transformers/multi-qa-mpnet-base-dot-v1
+# This can be overriden during runtime which is ideal
+query: "How can I load a dataset offline?"

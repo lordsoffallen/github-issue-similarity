@@ -1,6 +1,6 @@
 from kedro.pipeline import Pipeline, pipeline, node
 from .data import fetch_issues, clean, preprocess
-from .model import compute_embeddings
+from .model import compute_embeddings, find_similar_issues, print_similar_issues
 
 
 def create_pipeline(**kwargs) -> Pipeline:
@@ -19,5 +19,22 @@ def create_pipeline(**kwargs) -> Pipeline:
             compute_embeddings,
             inputs=['preprocessed', 'params:model_checkpoint'],
             outputs='embeddings',
-            name='embeddings')
+            name='compute_embeddings'
+        ),
+        node(
+            find_similar_issues,
+            inputs=[
+                'embeddings',
+                'params:model_checkpoint',
+                'params:query',
+            ],
+            outputs='similar_issues',
+            name='find_similar_issues'
+        ),
+        node(
+            print_similar_issues,
+            inputs='similar_issues',
+            outputs=None,
+            name='print_similar_issues'
+        ),
     ])

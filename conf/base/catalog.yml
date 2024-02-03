@@ -41,3 +41,13 @@ preprocessed:
 embeddings:
   type: extras.hf.HFDataset
   file_path: data/06_models/
+
+similar_issues:
+  type: pandas.JSONDataset
+  filepath: data/07_model_output/similar.json
+  save_args:
+    orient: records
+    lines: True
+  load_args:
+    orient: records
+    lines: True
