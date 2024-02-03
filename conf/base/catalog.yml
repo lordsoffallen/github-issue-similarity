@@ -1,0 +1,40 @@
+issues#api:
+  type: extras.api.GitHubIssueAPIDataset
+  url: https://api.github.com/repos
+  method: GET
+  owner: huggingface
+  repo: datasets
+  load_args:
+    headers:
+      Authorization: "token ${oc.env:GITHUB_TOKEN}"
+    num_issues_per_page: 100
+    num_issues: 10000
+
+issues#json:
+  type: pandas.JSONDataset
+  filepath: data/01_raw/issues.json
+  save_args:
+    orient: records
+    lines: True
+  load_args:
+    orient: records
+    lines: True
+
+comments#api:
+  type: extras.api.GitHubCommentAPIDataset
+  url: https://api.github.com/repos
+  method: GET
+  owner: huggingface
+  repo: datasets
+  load_args:
+    headers:
+      Authorization: "token ${oc.env:GITHUB_TOKEN}"
+
+issues_with_comments:
+  type: extras.hf.HFDataset
+  file_path: data/02_intermediate/
+
+
+preprocessed:
+  type: extras.hf.HFDataset
+  file_path: data/03_primary/
