@@ -34,7 +34,10 @@ issues_with_comments:
   type: extras.hf.HFDataset
   file_path: data/02_intermediate/
 
-
 preprocessed:
   type: extras.hf.HFDataset
   file_path: data/03_primary/
+
+embeddings:
+  type: extras.hf.HFDataset
+  file_path: data/06_models/
