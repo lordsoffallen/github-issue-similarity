@@ -1,0 +1,13 @@
+name: github-issue-similarity
+channels:
+  - pytorch
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.10
+  - transformers
+  - kedro
+  - pytorch
+  - cpuonly
+  - faiss-cpu=1.7.2   # 1.7.4 doesn't work
+prefix: /home/ftopal/miniconda3/envs/github-issue-similarity
